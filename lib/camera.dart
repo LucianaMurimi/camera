@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:camera/camera.dart';
+import 'package:flutter/services.dart';
 import 'gallery.dart';
 
 class Camera extends StatefulWidget {
@@ -17,6 +18,7 @@ class _CameraState extends State<Camera> {
 
   int camera = 0;
   bool flash = false;
+  double zoomLevel = 0.0;
   List<File> capturedImages = [];
 
   //----------------------------------------------------------------------------
@@ -138,10 +140,25 @@ class _CameraState extends State<Camera> {
               children: [
                 IconButton(
                     icon: Icon(Icons.add,  color: Colors.white, size: 24,),
-                    onPressed: (){}),
+                    onPressed: () async {
+                      // zoom in
+                      zoomLevel = zoomLevel + 1;
+                      await _initializeControllerFuture;
+                      await _controller.setZoomLevel(zoomLevel) ;
+                      setState(() { });
+                    }),
                 IconButton(
                     icon: Icon(Icons.remove, color: Colors.white, size: 24,),
-                    onPressed: (){}),
+                    onPressed: () async {
+                      // zoom out
+                      zoomLevel = zoomLevel - 1;
+                      if(zoomLevel > 1) {
+                        await _initializeControllerFuture;
+                        await _controller.setZoomLevel(zoomLevel);
+                        setState(() {});
+                      }
+                    }),
+
                 FloatingActionButton(
                   child: Icon(Icons.camera_alt_sharp),
                   onPressed: () async {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 
 class DisplayImage extends StatefulWidget {
   final image;
@@ -9,6 +10,7 @@ class DisplayImage extends StatefulWidget {
 }
 
 class _DisplayImageState extends State<DisplayImage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,19 +19,22 @@ class _DisplayImageState extends State<DisplayImage> {
           iconTheme: IconThemeData(color: Color(0xFF054857)),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 'Image',
                 style: TextStyle(fontFamily: 'Montserrat', fontSize: 14, letterSpacing: 1, fontWeight: FontWeight.bold, color: Color(0xFFd50e72)),
               ),
-              IconButton(
-                icon: Icon(Icons.share),
-                onPressed: (){
 
+              IconButton(
+                icon: Icon(Icons.share_sharp),
+                onPressed: (){
+                  // Share.share('check out my website https://example.com');
+                  Share.shareFiles(['${widget.image}'], );
                 },
-              )
+              ),
             ],
-          ),
+          )
         ),
 
         body: Center(

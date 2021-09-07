@@ -31,6 +31,9 @@ dependencies:
   camera: ^0.9.2+1
   path_provider: ^2.0.2
   path: ^1.8.0
+  social_share: ^2.1.1
+  share: ^2.0.4
+  share_plus: ^2.1.4
 
 dev_dependencies:
   flutter_test:
@@ -58,10 +61,12 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/images/instagram.png
+    - assets/images/twitter.png
+    - assets/images/whatsapp.png
     - assets/sounds/click.mp3
     - assets/sounds/click.wav
 
-  #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
